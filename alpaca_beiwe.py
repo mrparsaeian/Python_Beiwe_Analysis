@@ -1,5 +1,5 @@
 
-from preprocessing import participant
+from preprocessing import participants
 import os
 import configparser
 
@@ -7,6 +7,8 @@ config = configparser.ConfigParser()
 config.read(".config.cfg")
 data_dir = config["DEFAULT"]["root_dir"]
 print(data_dir)
-participant01 = participant(data_dir)
+participants01 = participants(data_dir)
 
-print(participant01.participant_names)
+# for group in participants01.traversals:
+group = participants01.traversals[0]
+print(participants01.dictionary[group])

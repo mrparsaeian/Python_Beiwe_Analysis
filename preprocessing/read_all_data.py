@@ -3,32 +3,34 @@ from os import listdir
 from os.path import join, exists
 
 
-def read_all_data(data_dir):
-    print(data_dir)
-
-
-class beiwe:
-    def __init__(self):
-        self.bewei_data = pd.DataFrame()
-
-    def read_participants(self):
-        sample_participant = participant()
-
-
-class participant:
+class participants:
     def __init__(self, init_root_dir):
+        self.traversals = ["group", "participants", "sensors", "metrics"]
+        self.dictionary = {}
+        self.dictionary = self.read_traversals(
+            init_root_dir, 0, self.dictionary)
 
-        self.participant_names = self.read_participant_names(init_root_dir)
-        # self.beiwe_data = self.read_data(init_root_dir)
-
-    def read_participant_names(self, root):
+    def read_traversals(self, root, current_traversal_index, dictionary):
         if exists(root):
-            participants_names_df = pd.DataFrame()
-            for participant_name, index in zip(listdir(root), range(len(listdir(root)))):
-                print(f'Processing participants: {participant_name}')
-                participants_names_df.loc[index,
-                                          "id"] = participant_name
-            return participants_names_df
+            print(f'current_traversal_index:{current_traversal_index}')
+            dictionary[self.traversals[current_traversal_index]
+                       ] = pd.DataFrame()
+            if self.traversals[current_traversal_index] == 'metrics':
+                print(f'Metrics dir:{root}')
+                for data_file_name, index in zip(listdir(root), range(len(listdir(root)))):
+                    print(
+                        f'Processing data files: {data_file_name}', '\n'
+                        f'Processing data files: {dictionary[self.traversals[current_traversal_index]]}')
+                    dictionary[self.traversals[current_traversal_index]] = pd.concat(
+                        [dictionary[self.traversals[current_traversal_index]], pd.read_csv(join(root, data_file_name))])
+            else:
+                for traversal_name, index in zip(listdir(root), range(len(listdir(root)))):
+                    print(f'Processing: {traversal_name}')
+                    dictionary[self.traversals[current_traversal_index]].loc[index,
+                                                                             f'{self.traversals[current_traversal_index]}_id'] = traversal_name
+                    print(dictionary[self.traversals[current_traversal_index]])
+                return self.read_traversals(
+                    join(root, traversal_name), current_traversal_index+1, dictionary)
         else:
             return None
 
