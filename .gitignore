@@ -128,6 +128,7 @@ ENV/
 env.bak/
 venv.bak/
 data/
+groups_data/
 # Spyder project settings
 .spyderproject
 .spyproject

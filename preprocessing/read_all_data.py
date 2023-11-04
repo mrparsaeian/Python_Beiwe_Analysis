@@ -1,14 +1,6 @@
-import read_single_data
 import pandas as pd
 from os import listdir
 from os.path import join, exists
-import configparser
-read_single_data.read_accelerometer("sample_root_dir")
-read_single_data.read_gps("sample_root_dir")
-config = configparser.ConfigParser()
-config.read(".config.cfg")
-data_dir = config["DEFAULT"]["root_dir"]
-print(data_dir)
 
 
 def read_all_data(data_dir):
@@ -64,8 +56,3 @@ class participant:
             return data_type_frame
         else:
             return None
-
-
-participant01 = participant(data_dir)
-
-print(participant01.participant_names)
