@@ -38,9 +38,9 @@ class participants:
                     # if self.traversals[current_traversal_index] == 'metrics' and basename(normpath(root)) not in ['survey_answers', 'survey_timings']:
                     print(f'Metrics dir:{root}')
                     for data_file_name, index in zip(listdir(root), range(len(listdir(root)))):
-                        # print(
-                        #     f'Processing data files: {data_file_name}', '\n'
-                        #     f'Processing data files: {dictionary[self.traversals[current_traversal_index]]}')
+                        print(
+                            f'Processing data files: {data_file_name}', '\n'
+                            f'Processing data files: {dictionary[self.traversals[current_traversal_index]]}')
                         if basename(normpath(root)) == 'app_log':
                             """
                             the third column in app_log.csv contains commas.
