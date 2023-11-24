@@ -130,6 +130,8 @@ venv.bak/
 data/
 groups_data/
 LSTM/
+Results/
+Plots/
 # Spyder project settings
 .spyderproject
 .spyproject
