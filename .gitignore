@@ -129,6 +129,7 @@ env.bak/
 venv.bak/
 data/
 groups_data/
+LSTM/
 # Spyder project settings
 .spyderproject
 .spyproject
