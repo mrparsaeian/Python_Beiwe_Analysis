@@ -132,6 +132,8 @@ groups_data/
 LSTM/
 Results/
 Plots/
+gps-export/
+
 # Spyder project settings
 .spyderproject
 .spyproject
